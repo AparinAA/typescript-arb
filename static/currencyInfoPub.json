@@ -1,0 +1,19 @@
+{
+    "TON": {
+        "okx": {
+            "name": "TON",
+            "idName": "TON-USDT",
+            "method": "TON-TON",
+            "fee": "0.01",
+            "address": "EQBfAN7LfaUYgXZNw5Wc7GBgkEX2yhuJ5ka95J1JJwXXf4a8",
+            "tag": "6000408"
+        },
+        "ftx": {
+            "name": "TONCOIN",
+            "idName": "TONCOIN/USD",
+            "method": "ton",
+            "address": "EQCzFTXpNNsFu8IgJnRnkDyBCL2ry8KgZYiDi3Jt31ie8EIQ",
+            "tag": "54d6f6b3-5224-4f06-b290-eda94e1d07b8"
+        }
+    }
+}
