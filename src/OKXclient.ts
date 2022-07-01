@@ -74,7 +74,7 @@ export default class OKXclient {
         interface Details {
             "ccy": string;
             "frozenBal": string | number;
-            "availBal": string | number
+            "availEq": string | number
             "eqUsd" : string | number;
         }
         interface Balance {
@@ -83,15 +83,15 @@ export default class OKXclient {
 
         return this.getRequest('/api/v5/account/balance')
             .then( (balance: any | Balance): balanceInfo | any  => {
-                
+                //console.info("balance:",balance[0]?.details);
                 if (balance?.code === -1) {
                     return Promise.reject({"error": "bad GET request balance check", "code": -1, "ex": "OKX"}); 
                 }
 
-                return balance?.details.map( (element: Details)  => {
+                return balance[0]?.details.map( (element: Details)  => {
                     return {
                         'ccy': element.ccy,
-                        'avail': element.availBal,
+                        'avail': element.availEq,
                         'eqUsd': element.eqUsd
 
                     }

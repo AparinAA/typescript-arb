@@ -66,17 +66,18 @@ class OKXclient {
     getBalance() {
         return this.getRequest('/api/v5/account/balance')
             .then((balance) => {
-            var _a;
+            var _a, _b;
+            //console.info("balance:",balance[0]?.details);
             if ((balance === null || balance === void 0 ? void 0 : balance.code) === -1) {
                 return Promise.reject({ "error": "bad GET request balance check", "code": -1, "ex": "OKX" });
             }
-            return (_a = balance === null || balance === void 0 ? void 0 : balance.details.map((element) => {
+            return (_b = (_a = balance[0]) === null || _a === void 0 ? void 0 : _a.details.map((element) => {
                 return {
                     'ccy': element.ccy,
-                    'avail': element.availBal,
+                    'avail': element.availEq,
                     'eqUsd': element.eqUsd
                 };
-            })) !== null && _a !== void 0 ? _a : Promise.reject({ "error": "bad GET request balance check", "code": -1, "ex": "OKX" });
+            })) !== null && _b !== void 0 ? _b : Promise.reject({ "error": "bad GET request balance check", "code": -1, "ex": "OKX" });
         }, () => {
             return Promise.reject({ "error": "bad GET request balance check", "code": -1, "ex": "OKX" });
         })
