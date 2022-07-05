@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 import path from 'path';
-import FTXclient from './FTXclient';
-import OKXclient from './OKXclient';
+import FTXclient from 'ftx-public-api';
+import OKXclient from 'okx-public-api';
+
 import { Telegraf } from 'telegraf';
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
@@ -40,7 +41,7 @@ if (!secretDict_OKX.api_key || !secretDict_OKX.secret_key || !secretDict_OKX.sec
     throw "Api key or secret key, or passphrase invalid of OKX";
 }
 
-const firstEx = new OKXclient (secretDict_OKX.api_key, secretDict_OKX.secret_key, secretDict_OKX.passphrase);
+const firstEx = new OKXclient(secretDict_OKX.api_key, secretDict_OKX.secret_key, secretDict_OKX.passphrase);
 
 const secondEx = new FTXclient(secretDict_FTX.api_key, secretDict_FTX.secret_key);
 

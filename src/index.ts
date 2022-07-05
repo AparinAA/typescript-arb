@@ -2,7 +2,7 @@ import сheckPrice from './checkprice';
 import { initMarket, firstEx, secondEx, bot } from './init';
 
 export function startTrade(currency: string) {
-    
+
     return Promise.all([firstEx.getBalance(), secondEx.getBalance(), firstEx.getName(), secondEx.getName()])
     .then( (result: [balanceInfo, balanceInfo, string,string] ): Promise<boolean> | boolean => {
             const market: Market = initMarket(currency, result[0], result[1]);

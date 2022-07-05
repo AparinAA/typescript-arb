@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.initMarket = exports.chatid = exports.bot = exports.secondEx = exports.firstEx = exports.spread = exports.amtWith = exports.amtArb = exports.delayPing = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
-const FTXclient_1 = __importDefault(require("./FTXclient"));
-const OKXclient_1 = __importDefault(require("./OKXclient"));
+const ftx_public_api_1 = __importDefault(require("ftx-public-api"));
+const okx_public_api_1 = __importDefault(require("okx-public-api"));
 const telegraf_1 = require("telegraf");
 dotenv_1.default.config({ path: path_1.default.resolve(__dirname, '../.env') });
 const TOKEN_BOT = process.env.TOKEN_BOT;
@@ -41,9 +41,9 @@ if (!secretDict_OKX.api_key || !secretDict_OKX.secret_key || !secretDict_OKX.sec
     console.info("Api key or secret key, or passphrase invalid of OKX");
     throw "Api key or secret key, or passphrase invalid of OKX";
 }
-const firstEx = new OKXclient_1.default(secretDict_OKX.api_key, secretDict_OKX.secret_key, secretDict_OKX.passphrase);
+const firstEx = new okx_public_api_1.default(secretDict_OKX.api_key, secretDict_OKX.secret_key, secretDict_OKX.passphrase);
 exports.firstEx = firstEx;
-const secondEx = new FTXclient_1.default(secretDict_FTX.api_key, secretDict_FTX.secret_key);
+const secondEx = new ftx_public_api_1.default(secretDict_FTX.api_key, secretDict_FTX.secret_key);
 exports.secondEx = secondEx;
 const delayPing = process.env.delay;
 exports.delayPing = delayPing;
